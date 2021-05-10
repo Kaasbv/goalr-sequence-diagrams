@@ -1,0 +1,15 @@
+@startuml
+title Attribuut value aanpassen
+skinparam monochrome true
+Frontend -> AttributeChange: HTTP POST
+activate AttributeChange
+AttributeChange->AttributeModel:getByGoalAndAttribute()
+activate AttributeModel
+AttributeChange<--AttributeModel:
+AttributeChange -> AttributeModel : set value
+AttributeChange->AttributeModel:update()
+AttributeChange<--AttributeModel:
+deactivate AttributeModel
+Frontend <--AttributeChange:HTTP 200
+deactivate AttributeChange
+@enduml

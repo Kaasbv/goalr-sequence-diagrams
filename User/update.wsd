@@ -1,0 +1,15 @@
+@startuml
+title Gebruiker aanpassen
+skinparam monochrome true
+Frontend -> UserUpdate: HTTP POST
+activate UserUpdate
+UserUpdate->UserModel:getByUsername()
+activate UserModel
+UserUpdate<--UserModel:
+UserUpdate -> UserModel : set values
+UserUpdate->UserModel:update()
+UserUpdate<--UserModel:
+deactivate UserModel
+Frontend <--UserUpdate:HTTP 200
+deactivate UserUpdate
+@enduml

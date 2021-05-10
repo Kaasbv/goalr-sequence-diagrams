@@ -1,0 +1,13 @@
+@startuml
+title Een andere gebruiker volgen
+skinparam monochrome true
+Frontend -> FollowerFollow: HTTP POST
+activate FollowerFollow
+FollowerFollow-> FollowerModel **:
+activate FollowerModel
+FollowerFollow->FollowerModel:create
+FollowerFollow<--FollowerModel:
+deactivate FollowerModel
+Frontend <--FollowerFollow:HTTP 200
+deactivate FollowerFollow
+@enduml

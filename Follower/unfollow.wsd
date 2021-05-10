@@ -1,0 +1,13 @@
+@startuml
+title Gebruiker ontvolgen
+skinparam monochrome true
+Frontend -> FollowerUnfollow: HTTP POST
+activate FollowerUnfollow
+FollowerUnfollow->FollowerModel:getByUsernames()
+activate FollowerModel
+FollowerUnfollow<--FollowerModel:
+FollowerUnfollow -> FollowerModel !! : delete()
+deactivate FollowerModel
+Frontend <--FollowerUnfollow:HTTP 200
+deactivate FollowerUnfollow
+@enduml

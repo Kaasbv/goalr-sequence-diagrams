@@ -1,0 +1,13 @@
+@startuml
+title Categorie verwijderen
+skinparam monochrome true
+Frontend -> CategoryDelete: HTTP POST
+activate CategoryDelete
+CategoryDelete->CategoryModel:getByUserAndName()
+activate CategoryModel
+CategoryDelete<--CategoryModel:
+CategoryDelete -> CategoryModel !! : delete()
+deactivate CategoryModel
+Frontend <--CategoryDelete:HTTP 200
+deactivate CategoryDelete
+@enduml

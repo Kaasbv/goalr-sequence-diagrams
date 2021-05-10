@@ -1,0 +1,13 @@
+@startuml
+title Attribuut verwijderen
+skinparam monochrome true
+Frontend -> AttributeDelete: HTTP POST
+activate AttributeDelete
+AttributeDelete->AttributeModel:getByGoalAndAttribute()
+activate AttributeModel
+AttributeDelete<--AttributeModel:
+AttributeDelete -> AttributeModel !! : delete()
+deactivate AttributeModel
+Frontend <--AttributeDelete:HTTP 200
+deactivate AttributeDelete
+@enduml

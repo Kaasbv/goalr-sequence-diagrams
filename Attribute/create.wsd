@@ -1,0 +1,13 @@
+@startuml
+title Attribuut aanmaken
+skinparam monochrome true
+Frontend -> AttributeCreate: HTTP POST
+activate AttributeCreate
+AttributeCreate-> AttributeModel **:
+activate AttributeModel
+AttributeCreate->AttributeModel:create
+AttributeCreate<--AttributeModel:
+deactivate AttributeModel
+Frontend <--AttributeCreate:HTTP 200
+deactivate AttributeCreate
+@enduml

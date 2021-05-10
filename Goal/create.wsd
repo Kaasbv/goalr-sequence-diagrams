@@ -1,0 +1,20 @@
+@startuml
+title Doel aanmaken
+skinparam monochrome true
+Frontend -> GoalCreate: HTTP POST
+activate GoalCreate
+GoalCreate-> GoalModel **:
+activate GoalModel
+GoalCreate->GoalModel:create
+GoalCreate<--GoalModel:
+deactivate GoalModel
+loop for category in categories
+  GoalCreate-> CategoryGoal **:
+  activate CategoryGoal
+  GoalCreate->CategoryGoal:create
+  GoalCreate<--CategoryGoal:
+  deactivate CategoryGoal
+end
+Frontend <--GoalCreate:HTTP 200
+deactivate GoalCreate
+@enduml

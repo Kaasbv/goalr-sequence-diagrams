@@ -1,0 +1,12 @@
+@startuml
+title Doelen ophalen van een gebruiker\n in een bepaalde tijdsperiode
+skinparam monochrome true
+Frontend -> GoalList: HTTP POST
+activate GoalList
+GoalList->GoalModel:listByUserAndTime()
+activate GoalModel
+GoalList<--GoalModel:
+deactivate GoalModel
+Frontend <--GoalList:HTTP 200
+deactivate GoalList
+@enduml

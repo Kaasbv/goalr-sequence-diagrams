@@ -1,0 +1,18 @@
+@startuml
+title Gevolgde gebruikers ophalen
+skinparam monochrome true
+Frontend -> FollowerList: HTTP POST
+activate FollowerList
+FollowerList->UserModel:getByEmail()
+activate UserModel
+FollowerList<--UserModel:
+FollowerList -> UserModel : listFollowers()
+UserModel->FollowerModel : listByUsername()
+activate FollowerModel
+UserModel<--FollowerModel:
+deactivate FollowerModel
+FollowerList<--UserModel:
+deactivate UserModel
+Frontend <--FollowerList:HTTP 200
+deactivate FollowerList
+@enduml

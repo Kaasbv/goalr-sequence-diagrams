@@ -1,0 +1,13 @@
+@startuml
+title Categorie aanmaken
+skinparam monochrome true
+Frontend -> CategoryCreate: HTTP POST
+activate CategoryCreate
+CategoryCreate-> CategoryModel **:
+activate CategoryModel
+CategoryCreate->CategoryModel:create
+CategoryCreate<--CategoryModel:
+deactivate CategoryModel
+Frontend <--CategoryCreate:HTTP 200
+deactivate CategoryCreate
+@enduml

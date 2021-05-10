@@ -1,0 +1,10 @@
+@startuml
+title Ingelogde gebruiker informatie ophalen
+skinparam monochrome true
+Frontend -> UserGet: HTTP POST
+UserGet->UserModel:getByEmail(email)
+activate UserModel
+UserGet<--UserModel:
+deactivate UserModel
+Frontend <--UserGet:HTTP 200
+@enduml

@@ -1,0 +1,19 @@
+@startuml
+title Gebruiker inloggen
+skinparam monochrome true
+Frontend -> UserLogin: HTTP POST
+activate UserLogin
+UserLogin -> UserModel: getByEmail(email)
+activate UserModel
+UserLogin<--UserModel:
+alt user doesnt exists
+Frontend<-UserLogin: HTTP 400 credentials incorrect
+end
+UserLogin -> UserModel: checkPassword(password)
+UserLogin <-- UserModel:
+alt password incorrect
+Frontend<-UserLogin: HTTP 400 credentials incorrect
+end
+UserLogin ->UserLogin: setSession
+Frontend<-UserLogin: HTTP 200
+@enduml

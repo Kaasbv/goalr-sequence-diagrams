@@ -1,0 +1,13 @@
+@startuml
+title Gebruiker registreren
+skinparam monochrome true
+Frontend -> UserRegister: HTTP POST
+activate UserRegister
+UserRegister->UserModel**:
+activate UserModel
+UserRegister->UserModel:create
+UserRegister<--UserModel:
+deactivate UserModel
+Frontend <--UserRegister:HTTP 200
+deactivate UserRegister
+@enduml

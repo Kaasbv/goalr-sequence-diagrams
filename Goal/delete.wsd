@@ -1,0 +1,13 @@
+@startuml
+title Doel verwijderen
+skinparam monochrome true
+Frontend -> GoalDelete: HTTP POST
+activate GoalDelete
+GoalDelete->GoalModel:getByGoalId()
+activate GoalModel
+GoalDelete<--GoalModel:
+GoalDelete -> GoalModel !! : delete()
+deactivate GoalModel
+Frontend <--GoalDelete:HTTP 200
+deactivate GoalDelete
+@enduml

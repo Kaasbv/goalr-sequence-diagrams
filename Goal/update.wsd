@@ -1,0 +1,15 @@
+@startuml
+title Doel aanpassen
+skinparam monochrome true
+Frontend -> GoalUpdate: HTTP POST
+activate GoalUpdate
+GoalUpdate->GoalModel:getByGoalId()
+activate GoalModel
+GoalUpdate<--GoalModel:
+GoalUpdate -> GoalModel : set values
+GoalUpdate->GoalModel:update()
+GoalUpdate<--GoalModel:
+deactivate GoalModel
+Frontend <--GoalUpdate:HTTP 200
+deactivate GoalUpdate
+@enduml
